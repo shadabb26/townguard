@@ -2,6 +2,15 @@
 
 TownGuard is a local issue reporting platform designed to streamline the process of reporting and managing community issues. This platform allows residents to submit various types of issues, such as potholes, graffiti, streetlight outages, and more, empowering local authorities to address these concerns efficiently.
 
+## Technologies Used
+
+TownGuard is developed using the MERN stack, which includes:
+
+- **MongoDB**: NoSQL database used for storing issue data.
+- **Express**: Web framework for building backend APIs and server-side logic.
+- **React**: JavaScript library for building interactive user interfaces.
+- **Node.js**: JavaScript runtime environment for running server-side code.
+
 ## Introduction
 
 TownGuard consists of three main components:
@@ -84,4 +93,8 @@ Open a web browser and navigate to http://localhost:5173 to use the TownGuard lo
 
 ### 8. Access the Admin Platform
 Open a web browser and navigate to http://localhost:5175 to use the TownGuard local issue reporting platform.
+
+## Developed By
+
+TownGuard is developed by [Shadabb](https://github.com/shadabb26)
 
