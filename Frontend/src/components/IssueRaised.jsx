@@ -9,14 +9,14 @@ export default function IssueRaised() {
     async function getIssues() {
       const response = await getIssueByUser(token);
       setIssues(response.data.data.issue);
-      document.title = 'Issue Raised'
+      document.title = "Issue Raised";
     }
     getIssues();
   }, [token]);
 
   console.log(issues);
   return (
-    <div className="container mt-5">
+    <div className="container mt-5 vh-100 ">
       <h2>Reported Issues</h2>
       {issues.length === 0 ? (
         <p>No issues reported.</p>
@@ -72,7 +72,9 @@ export default function IssueRaised() {
                       <p>Rejection Reason : {issue.rejectionReason}</p>
                     )}
                     <Link to={`/app/issues/${issue._id}`}>
-                      <button className="btn btn-secondary mt-4">View Details</button>
+                      <button className="btn btn-secondary mt-4">
+                        View Details
+                      </button>
                     </Link>
                   </div>
                   <div className="col-md-6">

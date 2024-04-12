@@ -7,6 +7,7 @@ import {
 } from "./../Services/resolverFunctionality";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import { useForm } from "react-hook-form";
+import { toast } from "react-toastify";
 
 export default function IssueDetails() {
   const token = localStorage.getItem("resolverToken");
@@ -32,13 +33,46 @@ export default function IssueDetails() {
 
   async function onSubmitReject(data) {
     const response = await rejectIssue(token, data, id);
-    console.log(response);
+    if (response && response.status === 200) {
+      toast("Issue Rejected !", {
+        theme: "light",
+        type: "success",
+        position: "top-center",
+        autoClose: 2000,
+        onClose: resolve,
+      });
+    } else {
+      toast("Something went wrong !", {
+        theme: "light",
+        type: "error",
+        position: "top-center",
+        autoClose: 2000,
+        onClose: resolve,
+      });
+    }
+
     reset();
   }
   async function onSubmitResolve(data) {
     const response = await resolveIssue(token, data, id);
+    if (response && response.status === 200) {
+      toast("Issue Resolved !", {
+        theme: "light",
+        type: "success",
+        position: "top-center",
+        autoClose: 2000,
+        onClose: resolve,
+      });
+    } else {
+      toast("Something went wrong !", {
+        theme: "light",
+        type: "error",
+        position: "top-center",
+        autoClose: 2000,
+        onClose: resolve,
+      });
+    }
 
-    console.log(response);
     reset();
   }
   useEffect(() => {
@@ -150,13 +184,20 @@ export default function IssueDetails() {
               </Marker>
             </MapContainer>
             <div className="mt-1">
-              <button className="btn btn-secondary m-1" onClick={handleResolve}>
-                Resolve
-              </button>
-              <button className="btn btn-secondary" onClick={handleReject}>
-                Reject
-              </button>
-              {reject && (
+              {issue.status === "pending" && (
+                <button
+                  className="btn btn-secondary m-1"
+                  onClick={handleResolve}
+                >
+                  Resolve
+                </button>
+              )}
+              {issue.status === "pending" && (
+                <button className="btn btn-secondary" onClick={handleReject}>
+                  Reject
+                </button>
+              )}
+              {reject && issue.status === "pending" && (
                 <form onSubmit={handleSubmit(onSubmitReject)}>
                   <div className="form-group mt-2">
                     <label htmlFor="reason" className="form-label">
@@ -197,7 +238,7 @@ export default function IssueDetails() {
                   </button>
                 </form>
               )}
-            {resolve && (
+              {resolve && issue.status === "pending" && (
                 <form onSubmit={handleSubmit(onSubmitResolve)}>
                   <div className="form-group mt-2">
                     <label htmlFor="resolveImg">

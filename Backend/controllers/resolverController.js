@@ -1,7 +1,7 @@
 const User = require('./../models/userModel');
 const Issues = require('./../models/issueModel');
 const uploadOnCloudinary = require('./../utils/cloudinary');
-const sendMail = require('./../utils/email');
+
 const Issue = require('./../models/issueModel');
 
 exports.getStats = async (_, res) => {
@@ -85,7 +85,7 @@ exports.rejectIssue = async (req, res) => {
         message: 'Issue not found'
       });
     }
-    sendMail()
+ 
     res.status(200).json({
       status: 'success',
       data: {
@@ -105,7 +105,7 @@ exports.resolveIssue = async (req, res) => {
   try {
     const resolverId = req.user._id;
     const issueId = req.body.id;
-    console.log(req.files.resolveImg);
+   
     if (!req.files || !req.files.resolveImg) {
       return res.status(400).json({
         status: 'fail',
@@ -117,7 +117,7 @@ exports.resolveIssue = async (req, res) => {
 
     // Upload on Cloudinary
     const resolveImg = await uploadOnCloudinary(resolveImgLocalPath);
-    console.log(resolveImg.url);
+    
     const issue = await Issues.findByIdAndUpdate(issueId, {
       resolver_id: resolverId,
       resolveImg: resolveImg.url,
