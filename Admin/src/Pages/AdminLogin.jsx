@@ -78,7 +78,7 @@ export default function AdminLogin() {
                     value: true,
                     message: "Please Enter Password",
                   },
-                  minLength: { value: 2, message: "Minimum Length is 8" },
+                  minLength: { value: 4, message: "Minimum Length is 4" },
                   maxLength: {
                     value: 20,
                     message: "Maximum Length is 20",
