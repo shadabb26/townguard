@@ -26,6 +26,7 @@ const storage = multer.diskStorage({
     const ext = path.extname(originalname); 
     const basename = path.basename(originalname, ext); 
 
+    // Unique file names 
     const timestamp = Date.now(); 
     const newFilename = `${basename}-${timestamp}${ext}`;
 
