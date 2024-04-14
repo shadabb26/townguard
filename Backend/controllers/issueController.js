@@ -79,6 +79,7 @@ exports.postIssues = async (req, res) => {
 
     const imageOneLocalPath = req.files.imageOne[0]?.path;
     const imageTwoLocalPath = req.files.imageTwo[0]?.path;
+   
 
     // Upload images to Cloudinary
     const imageOne = await uploadOnCloudinary(imageOneLocalPath);
